@@ -1,6 +1,8 @@
 import { ListRecord } from '@/models/list';
 import { TaskMutationInput, TaskRecord } from '@/models/task';
+import { cacheHomeState, queueTaskMutation } from '@/services/sync-service';
 import { canViewList } from '@/utils/permissions';
+import { SyncQueue } from '@/utils/sync-queue';
 
 export type HomeVisibleScope = 'all' | 'shared' | 'mine';
 
@@ -87,4 +89,50 @@ export async function toggleTaskCompletion(taskId: string, isCompleted: boolean)
   });
 
   return response.result as TaskRecord;
+}
+
+export async function toggleTaskCompletionWithOffline(input: {
+  tasks: TaskRecord[];
+  taskId: string;
+  isCompleted: boolean;
+  isOnline: boolean;
+  queue: SyncQueue;
+  monthKey: string;
+  executeRemote: (taskId: string, isCompleted: boolean) => Promise<void>;
+}): Promise<{ tasks: TaskRecord[]; queued: boolean }> {
+  const updatedTasks = input.tasks.map((task) =>
+    task.taskId === input.taskId
+      ? {
+          ...task,
+          isCompleted: input.isCompleted,
+        }
+      : task,
+  );
+
+  cacheHomeState(`home-cache-${input.monthKey}`, {
+    tasks: updatedTasks,
+  });
+
+  if (!input.isOnline) {
+    queueTaskMutation(input.queue, {
+      id: `toggle-${input.taskId}-${Date.now()}`,
+      type: 'toggleTaskCompletion',
+      payload: {
+        taskId: input.taskId,
+        isCompleted: input.isCompleted,
+      },
+    });
+
+    return {
+      tasks: updatedTasks,
+      queued: true,
+    };
+  }
+
+  await input.executeRemote(input.taskId, input.isCompleted);
+
+  return {
+    tasks: updatedTasks,
+    queued: false,
+  };
 }

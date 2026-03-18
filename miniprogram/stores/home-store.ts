@@ -93,6 +93,17 @@ export class HomeStore {
     this.lists = lists;
   }
 
+  updateTaskCompletion(taskId: string, isCompleted: boolean): void {
+    this.tasks = this.tasks.map((task) =>
+      task.taskId === taskId
+        ? {
+            ...task,
+            isCompleted,
+          }
+        : task,
+    );
+  }
+
   selectDate(date: LocalDate): void {
     this.selectedDate = date;
   }

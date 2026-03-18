@@ -1,0 +1,36 @@
+.task-sheet {
+  padding: 24rpx;
+  border-radius: 32rpx 32rpx 0 0;
+  background: #fff8ef;
+  box-shadow: 0 -12rpx 30rpx rgba(40, 31, 22, 0.06);
+}
+
+.task-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.task-sheet__title {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.task-sheet__action {
+  font-size: 22rpx;
+  color: #7b6c5d;
+}
+
+.task-sheet__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.task-sheet__empty {
+  padding: 32rpx 0;
+  text-align: center;
+  color: #8a7e72;
+  font-size: 24rpx;
+}

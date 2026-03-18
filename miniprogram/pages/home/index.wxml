@@ -10,8 +10,33 @@
   </block>
 
   <block wx:else>
-    <text class="title">任务清单</text>
-    <text class="subtitle" wx:if="{{hasSession}}">欢迎回来，{{userNickname}}</text>
-    <text class="subtitle" wx:else>微信身份已就绪，等待用户资料落地</text>
+    <view class="page-shell">
+      <view class="hero">
+        <text class="hero__eyebrow">双人空间待办</text>
+        <text class="hero__title">任务清单</text>
+        <text class="hero__subtitle" wx:if="{{hasSession}}">欢迎回来，{{userNickname}}</text>
+        <text class="hero__subtitle" wx:else>先从单人模式开始，随时邀请搭子加入</text>
+      </view>
+
+      <month-header
+        month-title="{{monthTitle}}"
+        visible-scope="{{visibleScope}}"
+        bind:prevmonth="onPrevMonth"
+        bind:nextmonth="onNextMonth"
+        bind:gotoday="onGoToday"
+        bind:scopechange="onScopeChange"
+      />
+
+      <month-grid cells="{{monthCells}}" bind:selectday="onDaySelect" />
+
+      <day-task-list
+        selected-date-label="{{selectedDateLabel}}"
+        tasks="{{selectedDayTasks}}"
+        bind:toggletask="onTaskToggle"
+        bind:opentask="onTaskOpen"
+      />
+
+      <button class="fab" bindtap="onAddTask">新建任务</button>
+    </view>
   </block>
 </view>

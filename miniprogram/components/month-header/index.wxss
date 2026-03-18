@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  padding: 24rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(180deg, #fff8ef 0%, #f4ecdf 100%);
+}
+
+.month-row,
+.scope-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.month-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.nav-button,
+.ghost-button {
+  border: none;
+  background: #efe4d2;
+  color: #2c241c;
+  font-size: 24rpx;
+  line-height: 1;
+  padding: 18rpx 20rpx;
+  border-radius: 999rpx;
+}
+
+.nav-button::after,
+.ghost-button::after {
+  border: none;
+}
+
+.scope-pills {
+  display: flex;
+  gap: 12rpx;
+}
+
+.scope-pill {
+  padding: 14rpx 20rpx;
+  border-radius: 999rpx;
+  background: #eadfce;
+  color: #6d6155;
+  font-size: 24rpx;
+}
+
+.scope-pill--active {
+  background: #1e1a16;
+  color: #fff8ef;
+}

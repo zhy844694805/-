@@ -1,0 +1,7 @@
+<view class="task-item" bindtap="onOpenTask">
+  <view class="task-copy">
+    <text class="task-title {{isCompleted ? 'task-title--completed' : ''}}">{{title}}</text>
+    <text class="task-subtitle">{{subtitle}}</text>
+  </view>
+  <button class="toggle-button" bindtap="onToggleTask">{{isCompleted ? '✓' : '○'}}</button>
+</view>

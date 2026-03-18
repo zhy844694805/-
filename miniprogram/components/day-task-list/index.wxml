@@ -1,0 +1,23 @@
+<view class="task-sheet">
+  <view class="task-sheet__header">
+    <text class="task-sheet__title">{{selectedDateLabel}}</text>
+    <text class="task-sheet__action">新增任务</text>
+  </view>
+
+  <view class="task-sheet__list" wx:if="{{tasks.length}}">
+    <task-item
+      wx:for="{{tasks}}"
+      wx:key="taskId"
+      task-id="{{item.taskId}}"
+      title="{{item.title}}"
+      subtitle="{{item.subtitle}}"
+      is-completed="{{item.isCompleted}}"
+      bind:toggletask="onToggleTask"
+      bind:opentask="onOpenTask"
+    />
+  </view>
+
+  <view class="task-sheet__empty" wx:else>
+    <text>这一天还没有任务</text>
+  </view>
+</view>

@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "任务清单"
+  "navigationBarTitleText": "任务清单",
+  "usingComponents": {
+    "month-header": "/components/month-header/index",
+    "month-grid": "/components/month-grid/index",
+    "day-task-list": "/components/day-task-list/index"
+  }
 }

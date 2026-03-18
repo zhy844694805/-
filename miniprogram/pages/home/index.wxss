@@ -1,0 +1,18 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #6c645c;
+}

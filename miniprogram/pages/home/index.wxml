@@ -1,0 +1,4 @@
+<view class="page">
+  <text class="title">任务清单</text>
+  <text class="subtitle">Mini Program scaffold ready</text>
+</view>

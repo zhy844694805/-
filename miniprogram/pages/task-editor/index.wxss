@@ -1,0 +1,51 @@
+.editor-page {
+  min-height: 100vh;
+  padding: 32rpx;
+  background: linear-gradient(180deg, #f4ebdd 0%, #efe1cd 100%);
+}
+
+.editor-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  padding: 32rpx;
+  border-radius: 32rpx;
+  background: #fff8ef;
+}
+
+.editor-title {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.field-label {
+  font-size: 24rpx;
+  color: #7f7061;
+}
+
+.field-input,
+.field-picker {
+  padding: 22rpx 24rpx;
+  border-radius: 24rpx;
+  background: #f3ebde;
+  font-size: 28rpx;
+  color: #241d17;
+}
+
+.save-button {
+  margin-top: 16rpx;
+  border: none;
+  border-radius: 999rpx;
+  background: #1f1a16;
+  color: #fff8ef;
+}
+
+.save-button::after {
+  border: none;
+}

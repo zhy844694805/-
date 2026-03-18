@@ -1,0 +1,38 @@
+<view class="editor-page">
+  <view class="editor-card">
+    <text class="editor-title">{{pageMode === 'edit' ? '编辑任务' : '新建任务'}}</text>
+
+    <view class="field">
+      <text class="field-label">标题</text>
+      <input
+        class="field-input"
+        placeholder="输入任务标题"
+        value="{{title}}"
+        bindinput="onTitleInput"
+      />
+    </view>
+
+    <view class="field">
+      <text class="field-label">日期</text>
+      <picker mode="date" value="{{dueDateKey}}" bindchange="onDateChange">
+        <view class="field-picker">{{dueDateKey}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <text class="field-label">所属清单</text>
+      <picker range="{{listLabels}}" value="{{selectedListIndex}}" bindchange="onListChange">
+        <view class="field-picker">{{listLabels[selectedListIndex] || '请选择清单'}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <text class="field-label">指派给</text>
+      <picker range="{{assigneeLabels}}" value="{{selectedAssigneeIndex}}" bindchange="onAssigneeChange">
+        <view class="field-picker">{{assigneeLabels[selectedAssigneeIndex] || '请选择对象'}}</view>
+      </picker>
+    </view>
+
+    <button class="save-button" bindtap="onSave">保存</button>
+  </view>
+</view>

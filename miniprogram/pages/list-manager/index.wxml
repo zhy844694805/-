@@ -1,0 +1,31 @@
+<view class="manager-page">
+  <view class="manager-card">
+    <text class="manager-title">清单管理</text>
+
+    <view class="field">
+      <text class="field-label">新建个人清单</text>
+      <input class="field-input" value="{{privateListName}}" bindinput="onPrivateNameInput" placeholder="例如：工作 / 采购" />
+      <button class="action-button" bindtap="onCreatePrivateList">创建个人清单</button>
+    </view>
+
+    <view class="field" wx:if="{{hasActiveSpace}}">
+      <text class="field-label">新建共享清单</text>
+      <input class="field-input" value="{{sharedListName}}" bindinput="onSharedNameInput" placeholder="例如：一起要做" />
+      <button class="action-button" bindtap="onCreateSharedList">创建共享清单</button>
+    </view>
+
+    <view class="field">
+      <text class="field-label">已有清单</text>
+      <view class="list-item" wx:for="{{lists}}" wx:key="listId" data-list-id="{{item.listId}}" data-list-name="{{item.name}}" bindtap="onSelectRenameTarget">
+        <text>{{item.name}}</text>
+        <text class="list-tag">{{item.type === 'shared' ? '共享' : '个人'}}</text>
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="field-label">重命名选中清单</text>
+      <input class="field-input" value="{{renameValue}}" bindinput="onRenameInput" placeholder="输入新名称" />
+      <button class="action-button" bindtap="onRenameList">确认重命名</button>
+    </view>
+  </view>
+</view>

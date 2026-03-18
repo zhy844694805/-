@@ -1,0 +1,50 @@
+<view class="page">
+  <block wx:if="{{bootstrapState === 'loading'}}">
+    <text class="title">任务清单</text>
+    <text class="subtitle">正在加载用户信息...</text>
+  </block>
+
+  <block wx:elif="{{bootstrapState === 'error'}}">
+    <text class="title">加载失败</text>
+    <text class="subtitle">{{bootstrapError}}</text>
+  </block>
+
+  <block wx:else>
+    <view class="page-shell">
+      <view class="hero">
+        <text class="hero__eyebrow">双人空间待办</text>
+        <text class="hero__title">任务清单</text>
+        <text class="hero__subtitle" wx:if="{{hasSession}}">欢迎回来，{{userNickname}}</text>
+        <text class="hero__subtitle" wx:else>先从单人模式开始，随时邀请搭子加入</text>
+        <button
+          class="hero__cta"
+          wx:if="{{canInvitePartner}}"
+          open-type="share"
+          bindtap="onInvitePartnerTap"
+        >
+          邀请搭子一起用
+        </button>
+      </view>
+
+      <month-header
+        month-title="{{monthTitle}}"
+        visible-scope="{{visibleScope}}"
+        bind:prevmonth="onPrevMonth"
+        bind:nextmonth="onNextMonth"
+        bind:gotoday="onGoToday"
+        bind:scopechange="onScopeChange"
+      />
+
+      <month-grid cells="{{monthCells}}" bind:selectday="onDaySelect" />
+
+      <day-task-list
+        selected-date-label="{{selectedDateLabel}}"
+        tasks="{{selectedDayTasks}}"
+        bind:toggletask="onTaskToggle"
+        bind:opentask="onTaskOpen"
+      />
+
+      <button class="fab" bindtap="onAddTask">新建任务</button>
+    </view>
+  </block>
+</view>

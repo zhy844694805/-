@@ -1,0 +1,33 @@
+<view class="header">
+  <view class="month-row">
+    <button class="nav-button" bindtap="onPrevMonth">上月</button>
+    <text class="month-title">{{monthTitle}}</text>
+    <button class="nav-button" bindtap="onNextMonth">下月</button>
+  </view>
+  <view class="scope-row">
+    <button class="ghost-button" bindtap="onGoToday">今天</button>
+    <view class="scope-pills">
+      <view
+        class="scope-pill {{visibleScope === 'all' ? 'scope-pill--active' : ''}}"
+        data-scope="all"
+        bindtap="onScopeChange"
+      >
+        全部
+      </view>
+      <view
+        class="scope-pill {{visibleScope === 'shared' ? 'scope-pill--active' : ''}}"
+        data-scope="shared"
+        bindtap="onScopeChange"
+      >
+        共享
+      </view>
+      <view
+        class="scope-pill {{visibleScope === 'mine' ? 'scope-pill--active' : ''}}"
+        data-scope="mine"
+        bindtap="onScopeChange"
+      >
+        我的
+      </view>
+    </view>
+  </view>
+</view>

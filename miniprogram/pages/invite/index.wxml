@@ -1,0 +1,8 @@
+<view class="invite-page">
+  <view class="invite-card">
+    <text class="invite-title">
+      {{inviteState.phase === 'loading' ? '处理邀请中' : inviteState.phase === 'success' ? '绑定成功' : '邀请处理失败'}}
+    </text>
+    <text class="invite-message">{{inviteState.message}}</text>
+  </view>
+</view>

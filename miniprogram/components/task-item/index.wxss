@@ -1,0 +1,45 @@
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 20rpx;
+  border-radius: 24rpx;
+  background: #f4ecdf;
+}
+
+.task-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.task-title {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.task-title--completed {
+  text-decoration: line-through;
+  color: #8a7e72;
+}
+
+.task-subtitle {
+  font-size: 22rpx;
+  color: #7d7369;
+}
+
+.toggle-button {
+  border: none;
+  background: #1e1a16;
+  color: #fff8ef;
+  width: 68rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  border-radius: 999rpx;
+  padding: 0;
+}
+
+.toggle-button::after {
+  border: none;
+}

@@ -1,0 +1,53 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10rpx;
+  padding: 24rpx;
+  border-radius: 28rpx;
+  background: #fffdf8;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 22rpx;
+  color: #7d7369;
+}
+
+.cell {
+  min-height: 140rpx;
+  padding: 12rpx;
+  border-radius: 20rpx;
+  background: #f5ebdd;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.cell--muted {
+  opacity: 0.45;
+}
+
+.cell--selected {
+  background: #1e1a16;
+  color: #fff8ef;
+}
+
+.cell-day {
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.preview-item,
+.preview-more {
+  font-size: 18rpx;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

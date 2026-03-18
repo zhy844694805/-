@@ -50,6 +50,19 @@
   color: #6b5d4f;
 }
 
+.hero__cta {
+  align-self: flex-start;
+  border: none;
+  border-radius: 999rpx;
+  background: #f0dcc1;
+  color: #241d17;
+  padding: 0 28rpx;
+}
+
+.hero__cta::after {
+  border: none;
+}
+
 .fab {
   position: fixed;
   right: 32rpx;

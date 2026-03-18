@@ -1,3 +1,5 @@
+import { buildInviteSharePath } from '@/services/invite-entry-service';
+import { canCreateInvite, createSpaceInvite } from '@/services/space-service';
 import { AppStore } from '@/stores/app-store';
 import { HomeStore } from '@/stores/home-store';
 import { LocalDate } from '@/utils/date/local-date';
@@ -49,6 +51,8 @@ Page({
     monthCells: [] as HomePageCell[],
     selectedDateLabel: '',
     selectedDayTasks: [] as HomePageTask[],
+    canInvitePartner: false,
+    pendingInviteId: '',
   },
 
   onLoad() {
@@ -81,9 +85,36 @@ Page({
       bootstrapError: appStore.errorMessage,
       userNickname: appStore.user?.nickname ?? '',
       hasSession: Boolean(appStore.user),
+      canInvitePartner: canCreateInvite({
+        currentSpaceId: appStore.user?.currentSpaceId ?? null,
+      }),
     });
 
     this.renderHome();
+  },
+
+  async onInvitePartnerTap() {
+    if (!this.data.canInvitePartner) {
+      return;
+    }
+
+    try {
+      const result = await createSpaceInvite();
+
+      this.setData({
+        pendingInviteId: result.invite.inviteId,
+      });
+
+      wx.showToast({
+        title: '请从右上角分享给对方',
+        icon: 'none',
+      });
+    } catch (error) {
+      wx.showToast({
+        title: error instanceof Error ? error.message : '创建邀请失败',
+        icon: 'none',
+      });
+    }
   },
 
   renderHome() {
@@ -173,5 +204,16 @@ Page({
     wx.navigateTo({
       url: `/pages/task-editor/index?taskId=${event.detail.taskId}`,
     });
+  },
+
+  onShareAppMessage() {
+    const path = this.data.pendingInviteId
+      ? buildInviteSharePath(this.data.pendingInviteId)
+      : '/pages/home/index';
+
+    return {
+      title: '一起用任务清单安排生活',
+      path,
+    };
   },
 });

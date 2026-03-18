@@ -3,6 +3,11 @@ import {
   acceptInviteBundle,
   buildPendingInviteBundle,
 } from '@/services/space-service';
+import {
+  buildInviteSharePath,
+  createInviteLoadingState,
+  resolveInviteAcceptanceState,
+} from '@/services/invite-entry-service';
 
 describe('invite flow domain', () => {
   it('creates a pending space and invite for a solo user', () => {
@@ -85,5 +90,44 @@ describe('invite flow domain', () => {
     expect(result.space.status).toBe('active');
     expect(result.space.partnerUserId).toBe('u2');
     expect(result.invite.status).toBe('accepted');
+  });
+
+  it('builds the invite entry path with inviteId route params', () => {
+    expect(buildInviteSharePath('invite-1')).toBe('/pages/invite/index?inviteId=invite-1');
+  });
+
+  it('shows loading while acceptance is running and redirects home after success', async () => {
+    expect(createInviteLoadingState('invite-1')).toEqual({
+      inviteId: 'invite-1',
+      phase: 'loading',
+      message: '正在接受邀请...',
+    });
+
+    await expect(
+      resolveInviteAcceptanceState({
+        inviteId: 'invite-1',
+        acceptInvite: async () => {},
+      }),
+    ).resolves.toEqual({
+      inviteId: 'invite-1',
+      phase: 'success',
+      message: '绑定成功，正在返回首页',
+      redirectUrl: '/pages/home/index',
+    });
+  });
+
+  it('shows actionable error text when invite acceptance fails', async () => {
+    await expect(
+      resolveInviteAcceptanceState({
+        inviteId: 'invite-1',
+        acceptInvite: async () => {
+          throw new Error('邀请已失效，请让对方重新发送');
+        },
+      }),
+    ).resolves.toEqual({
+      inviteId: 'invite-1',
+      phase: 'error',
+      message: '邀请已失效，请让对方重新发送',
+    });
   });
 });

@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/index",
     "pages/task-editor/index",
-    "pages/list-manager/index"
+    "pages/list-manager/index",
+    "pages/invite/index"
   ],
   "window": {
     "navigationBarTitleText": "任务清单",

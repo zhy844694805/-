@@ -16,6 +16,14 @@
         <text class="hero__title">任务清单</text>
         <text class="hero__subtitle" wx:if="{{hasSession}}">欢迎回来，{{userNickname}}</text>
         <text class="hero__subtitle" wx:else>先从单人模式开始，随时邀请搭子加入</text>
+        <button
+          class="hero__cta"
+          wx:if="{{canInvitePartner}}"
+          open-type="share"
+          bindtap="onInvitePartnerTap"
+        >
+          邀请搭子一起用
+        </button>
       </view>
 
       <month-header

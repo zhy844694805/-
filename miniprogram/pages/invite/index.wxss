@@ -1,0 +1,28 @@
+.invite-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx;
+  background: linear-gradient(180deg, #f4ebdd 0%, #efe1cd 100%);
+}
+
+.invite-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  width: 100%;
+  padding: 40rpx 32rpx;
+  border-radius: 32rpx;
+  background: #fff8ef;
+}
+
+.invite-title {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.invite-message {
+  font-size: 28rpx;
+  color: #6b5d4f;
+}
